@@ -19,10 +19,6 @@ socket.on('connect', function() {
 	socket.emit('room', room);
 });
 
-socket.on('message', function(msg){
-	console.log('message', msg);
-});
-
 chokidar.watch(config[":workspace"]).on('all', function(event, path) {
   	if (connected) {
   		var typeOfEvent = "remote-file-change";
