@@ -56,14 +56,14 @@ var watcher = chokidar.watch(config[":workspace"], {
 watcher
 	.on('add', commonCallbackWithEvent('addFile'))
 	.on('change', (path) => {
-		emitEvent('changeFile', path);
+		emitEvent(path, 'changeFile');
 	})
 	.on('unlink', (path) => {
 		var pathToFile = getPathToFile(path);
 		if (!fs.existsSync(pathToFile)) {
 			pathToFile = getPathToFile(pathToFile);
 		}
-		emitEvent('unlinkFile', pathToFile);
+		emitEvent(pathToFile, 'unlinkFile');
 	})
 	.on('addDir', commonCallbackWithEvent('addDir'))
 	.on('unlinkDir', commonCallbackWithEvent('unlinkDir'));
