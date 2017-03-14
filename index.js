@@ -3,13 +3,26 @@ var chokidar = require('chokidar');
 var yaml = require('js-yaml');
 var fs = require('fs');
 var netrc = require('netrc');
-const osHomedir = require('os-homedir');
+
+var userHome = '';
+process.argv.forEach((val, index) => {
+	if (val.indexOf('homeDir=')) {
+		userHome = val.replace('homeDir=', '');
+	}
+});
+
+gaConfigPath = userHome + '/.ga-config';
+netrcPath = userHome + '/.netrc';
+if (!(fs.existsSync(gaConfigPath) && fs.existsSync(netrcPath))) {
+	console.log('User Config does not exists');
+	return;
+}
 
 var connected = false;
 // get workspace path to watch after
-var config = yaml.safeLoad(fs.readFileSync(osHomedir() + '/.ga-config', 'utf8'));
+var config = yaml.safeLoad(fs.readFileSync(gaConfigPath, 'utf8'));
 // get user github username for creating websocket room
-var myNetrc = netrc();
+var myNetrc = netrc(netrcPath);
 var room = myNetrc['ga-extra'].login;
 // connect to GreyAtom's websocket server
 var socket = io.connect('http://35.154.96.42:9000', { reconnect: true });

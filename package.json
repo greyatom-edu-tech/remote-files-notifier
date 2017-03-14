@@ -12,7 +12,6 @@
     "chokidar": "^1.6.1",
     "js-yaml": "^3.8.1",
     "netrc": "^0.1.4",
-    "os-homedir": "^1.0.2",
     "socket.io-client": "^1.7.2"
   }
 }
