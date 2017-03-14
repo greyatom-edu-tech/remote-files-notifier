@@ -6,7 +6,7 @@ var netrc = require('netrc');
 
 var userHome = '';
 process.argv.forEach((val, index) => {
-	if (val.indexOf('homeDir=')) {
+	if (val.indexOf('homeDir=') !== -1) {
 		userHome = val.replace('homeDir=', '');
 	}
 });
