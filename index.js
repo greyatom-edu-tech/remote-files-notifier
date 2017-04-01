@@ -3,7 +3,6 @@ var chokidar = require('chokidar');
 var yaml = require('js-yaml');
 var fs = require('fs');
 var netrc = require('netrc');
-var request = require('request');
 
 var userHome = '';
 process.argv.forEach((val, index) => {
@@ -42,21 +41,6 @@ var getPathToFile = function (path) {
 };
 
 var emitEvent = function (path, event) {
-	var post_options = {
-		url: 'http://35.154.206.75:5000/send/' + room,
-		method: 'POST',
-		form: {
-			"message" : JSON.stringify({
-				"type": typeOfEvent,
-				"title": event,
-				"message": path,
-			})
-		}
-	};
-	request(post_options);
-}
-
-var postEvent = function (path, event) {
 	var data = {
 		"type": typeOfEvent,
 		"title": event,
