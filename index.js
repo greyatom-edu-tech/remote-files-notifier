@@ -66,7 +66,8 @@ var commonCallbackWithEvent = function (event) {
 
 var watcher = chokidar.watch(config[":workspace"], {
   ignored: /(^|[\/\\])\../,
-  persistent: true
+  persistent: true,
+  depth: 0
 });
 
 // Add event listeners.
