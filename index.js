@@ -25,7 +25,8 @@ var config = yaml.safeLoad(fs.readFileSync(gaConfigPath, 'utf8'));
 var myNetrc = netrc(netrcPath);
 var room = myNetrc['ga-extra'].login;
 // connect to GreyAtom's websocket server
-var socket = io.connect('https://chat.commit.live', { reconnect: true });
+// var socket = io.connect('https://chat.commit.live', { reconnect: true });
+var socket = io.connect('http://13.126.157.180:5000', { reconnect: true });
 var typeOfEvent = "remote-file-change";
 
 socket.on('connect', function() {
